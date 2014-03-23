@@ -105,14 +105,6 @@ def get_spiking_data(filename, continuous=None):
     return spike_train_all, emg_all
     
 
-smoothing=ones((1,500))[0]
-blah=convolve(mean(a[0][1][:,500:],0),smoothing)
-blah=blah[249:-250]
-sq=(0,0,0)
-dq=(0.6,0,0)
-ds=(1.0,0,0)
-ss=(1,0.6,0.6)
 
-plot(range(-1000,2500),blah*2,color=ss,linewidth=3)
 
 
