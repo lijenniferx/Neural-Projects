@@ -5,7 +5,8 @@ import scipy
 import scipy.signal
     
 def get_spiking_data(filename, continuous=None):
-    '''filename needs to be of the format "120601jxl36", continuous needs to have a value if you want the EMG data'''
+    '''filename needs to be a path going to the file; continuous needs to have a value if you want the EMG data'''
+    
     ''' this function will have two outputs. Format of first output (neural responses): a[neural id][taste id][trial number].
     Format of second output (EMG responses): b[taste id][trial number]. EMG responses are downsampled to 1 kHz'''
    
@@ -15,11 +16,9 @@ def get_spiking_data(filename, continuous=None):
     post=2501 ### amount of time following taste delivery
     
     ###  Getting spiking, LFP, and event data from .nex file
-    data=nexio.read_nex('/Users/jenniferli/Desktop/KatzLabProjects/Data/'+\
-    filename[-5:].upper()+'/'+filename+'/'+filename+'-interval.nex')
+    data=nexio.read_nex(filename)
     
-    data_continuous=nexio.read_nex('/Users/jenniferli/Desktop/KatzLabProjects/Data/'+\
-    filename[-5:].upper()+'/'+filename+'/'+filename+'.nex',load=['continuous'])
+    data_continuous=nexio.read_nex(filename,load=['continuous'])
 
     ##############################
     ### getting the taste delivery times
